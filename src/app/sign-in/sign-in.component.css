@@ -1,0 +1,31 @@
+.welcome-title{
+    font-size: 40px;
+    color: black;
+    font-weight: 600;
+}
+
+
+
+.card{
+    width: 600px;
+    padding:50px
+}
+.row{
+    justify-content: space-around;
+}
+
+
+.input-custom{
+    width: 80%;
+    box-shadow: none;
+    text-align: -webkit-center;
+}
+.input-container{
+    width: 80%;
+}
+.input-container:focus{
+    width: 90%;
+}
+.input-custom-title{
+    color: var(--off-white);
+}

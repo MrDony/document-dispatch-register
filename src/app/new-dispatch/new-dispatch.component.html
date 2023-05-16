@@ -1,0 +1,158 @@
+<app-top-bar></app-top-bar>
+<div class="column" *ngIf="!finished">
+    <div class="column card">
+        <div class="card-title">
+            Dispatch a Document
+        </div>
+        <div class="card-body">
+            <div class="input-custom">
+                <div class="input-custom-title">
+                    Title
+                </div>
+                <input class="input-container" #Title>
+                <div class="warning-red m-5">
+                    {{errors['Title']}}
+                </div>
+            </div>
+
+            <div class="input-custom">
+                <div class="input-custom-title">
+                    Description
+                </div>
+                <input class="input-container" #Description>
+                <div class="warning-red m-5">
+                    {{errors['Description']}}
+                </div>
+            </div>
+
+            <div class="input-custom">
+                <div class="input-custom-title">
+                    Define Path The Document Will Take
+                </div>
+                
+                <div class="row">
+                    <div class="tag" *ngFor="let stop of stops; let i =index" (click)="addStop(i)">{{stop}}</div>
+                </div>
+                <div class="row m-12 al-c">
+                    <input class="input-container" #position placeholder="Add Custom Reciever" style="margin-right: 20px;">
+                    <button class="button-medium round m-12" (click)="addToPath(position.value)">add</button>
+                </div>
+                
+                <div class="input-custom-description">
+                    The following list shows the admin members that will recieve the document. The route will be decided on the order in this list. (The first stop for the document should be where the document will be initiated from)
+                </div>
+                <div class="row">
+                    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let position of path;let i = index;" cdkDrag>
+                            <div class="row tag round">{{position}} <i class="material-icons" *ngIf="i>0" (click)="removeFromPath(i)">delete</i> </div>
+
+                            <span *ngIf="i+1<path.length" class="material-icons" style="transform: rotate(270deg); color: var(--orange);"> arrow_downward </span>
+                        </div>
+                        <div class="input-custom-description m-12" *ngIf="!path.length">Choose from the list above or add new.</div>
+                    </div>
+                </div>
+                <div class="warning-red m-5">
+                    {{errors['Path']}}
+                </div>
+
+                
+            </div>
+
+            <div class="input-custom">
+                <div class="input-custom-title">
+                    Add Image
+                </div>
+                <div class="column">
+                    <div class="row m-12"><input type="file" (change)="onFileSelected($event)"></div>
+                    <div class="row m-12"><img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Image"></div>
+                </div>
+                
+            </div>
+
+            <div class="input-custom">
+                <div class="input-custom-title">
+                    Comments
+                </div>
+                <input class="input-container" #Comments>
+            </div>
+            
+            <button class="button-big round m-12" (click)="submitForm(Title.value, Description.value, Comments.value)">
+                Finish
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<div class="column" *ngIf="finished">
+    <div class="card bg-black">
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">ID</div>
+            <div class="column m-5 c-w">{{document['DocumentID']}}</div>
+        </div>
+
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Title</div>
+            <div class="column m-5 c-w">{{document['Title']}}</div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Description</div>
+            <div class="column m-5 c-w">{{document['Description']}}</div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Date/Time</div>
+            <div class="column m-5 c-w">{{document['PostedDate'].slice(0, 19).replace('T', ' ')}}</div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Currently At</div>
+            <div class="column m-5 c-w">{{document.Path[document.CurrentPosition]}}</div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Path</div>
+                <div class="example-box" style="width: max-content; cursor: default;" *ngFor="let position of document.Path;let i = index;" cdkDrag>
+                    <div class="row tag round" style="width: max-content;" [ngStyle]="{'background-color': i<=document.CurrentPosition ? 'var(--e-green)' : 'var(--orange)'}">
+                        {{position}}
+                    </div>
+                    <span *ngIf="i+1<document.Path.length" class="material-icons" style="transform: rotate(270deg); color: var(--orange);"> arrow_downward </span>
+                </div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Posted By</div>
+            <div class="column m-5 c-w">{{document.PostedUserName}}</div>
+        </div>
+        
+        <div class="row">
+            <div class="column m-5 c-w" style="width: 10%;">Status</div>
+            <div class="column m-5 c-w">{{document.Status}}</div>
+        </div>
+        <button class="button-big round m-12" (click)="finished=false; path=[]; imageUrl=''" >
+            Back
+        </button>
+    </div>
+</div>
+
+<!--
+    Abbrehivations accronyms
+    intro
+    submission details
+    project identify
+    technologies / approaches
+    challenges
+    motivations -> remove delays in searching, recover status/positions
+    expected outcomes
+    benifits or benificiaries
+    objectives (4-5)
+    uniqueness of THIS project
+    milstones / deliverables
+    risk analysis
+    resources and other requirements
+    gantt chart
+    executive summary (2-3 paragraphs duration totalcost)
+
+-->
+

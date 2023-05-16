@@ -1,0 +1,143 @@
+<app-top-bar></app-top-bar>
+<div class="column">
+    <div class="row">
+        <!--User Details-->
+        <div class="column card w-50per" style="flex: 1 0 200px;">
+            <div class="card-title ">
+                User Details
+            </div>
+            <div class="column card-body">
+                <div class="row">
+                    Name: &nbsp; <div class="fw-6">{{userDetails['Name']}}</div>
+                </div>
+                <div class="row">
+                    Occupation: &nbsp; <div class="fw-6">{{userDetails['Occupation']}}</div>
+                </div>
+                <div class="row">
+                    Office Title: &nbsp; <div class="fw-6">{{userDetails['OfficeTitle']}}</div>
+                </div>
+            </div>
+        </div>
+        <!--Add New Document-->
+        <div class="column card  w-50per" style="flex: 1 0 200px;">
+            <div class="card-title">Dispatch a Document</div>
+            <div class="card-description">Click on the button below to go to dispatch entry register.</div>
+            <div class="row" style="justify-content: space-around;">
+                <button class="button-big round" (click)="goToNewDispatch()">
+                    Create New
+                </button>
+                
+            </div>
+        </div>
+    </div>
+    <!--My Document Details-->
+    <div class="column card">
+        <div class="card-title">
+            My Documents Details
+        </div>
+        <div class="card-description">
+            The following data shows how many documents you have in every category. Click on any category to view full data.
+        </div>
+        <div class="row card-body" style="justify-content: space-evenly;">
+
+            <div class="value-holder " (click)="goToDispatched()">
+                <div class="row value-holder-title jc-c al-c">
+                    Dispatched
+                    <span class="material-icons">upload</span>
+                </div>
+                <div class="row jc-c"><div class="value-holder-value">
+                    {{dispatchedDocumentsCount}}
+                </div></div>
+            </div>
+            <div class="value-holder " (click)="goToIncoming()">
+                <div class="row value-holder-title jc-c al-c">
+                    Incoming
+                    <span class="material-icons">download</span>
+                </div>
+                <div class="row jc-c"><div class="value-holder-value">
+                    {{incomingDocumentsCount}}
+                </div></div>
+                
+            </div>
+
+            <div class="value-holder " (click)="goToRecieved()">
+                <div class="row value-holder-title jc-c al-c">
+                    Recieved
+                    <span class="material-icons">download</span>
+                </div>
+                <div class="row jc-c"><div class="value-holder-value">
+                    {{recievedDocumentsCount}}
+                </div></div>
+                
+            </div>
+
+            <div class="value-holder " (click)="goToCompleted()">
+                <div class="row value-holder-title jc-c al-c">
+                    Completed
+                    <span class='material-icons'>done</span>
+                </div>
+                <div class="row jc-c"><div class="value-holder-value">
+                    {{completedDocumentsCount}}
+                </div></div>
+            </div>
+
+            
+            
+        </div>
+    </div>
+    <!--Recent Documents-->
+    <div class="column card " style="height: 500px;">
+        <div class="card-title">
+            Recent Documents
+        </div>
+        <div class="card-description">
+            The following table shows the recent documents you recieved or sent out.
+        </div>
+        <div class="column card-body" >
+            <div class="classic-table column" style="height:70%;">
+                <div class="classic-table-row ct-row-header row">
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        ID
+                    </div>
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        Title
+                    </div>
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        Sent By
+                    </div>
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        Currently At
+                    </div>
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        Posted Date/Time
+                    </div>
+                    <div class="ct-row-ele ct-header w-20per fs-12">
+                        Status
+                    </div>
+                </div>
+                <div class="classic-table-body column" >
+                    <div class="classic-table-row ct-row-clickable" *ngFor="let document of recentDocuments; let i =index" [ngClass]="i % 2 === 0 ? 'ct-row-even' : 'ct-row-odd'" >
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document.DocumentID}}
+                        </div>
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document['Title']}}
+                        </div>
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document['PostedUserName']}}
+                        </div>
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document.Path[document['CurrentPosition']]}}
+                        </div>
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document['PostedDate'].slice(0, 19).replace('T', ' ')}}
+                        </div>
+                        <div class="ct-row-ele w-20per fs-12" style="color: inherit;">
+                            {{document['Status']}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

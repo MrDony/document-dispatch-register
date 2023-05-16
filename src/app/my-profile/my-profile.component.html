@@ -1,0 +1,43 @@
+<app-top-bar></app-top-bar>
+<div class="row w-100per">
+    <div class="card w-100per">
+        <div class="card-title row">My Profile <button class="button-medium round" *ngIf="!editing" (click)="editing=true"><span class='material-icons'>edit</span></button></div>
+        <div class="row m-12"><div class="input-custom">
+            <div class="input-custom-title">
+                Username
+                
+            </div>
+            <div class="input-custom-description p-12 bg-ow">{{uname}}</div>
+        </div></div>
+        <div class="row m-12"><div class="input-custom">
+            <div class="input-custom-title">
+                Password
+            </div>
+            <input class="input-container" #password value={{pass}} [disabled]="!editing">
+        </div></div>
+        <div class="row m-12"><div class="input-custom">
+            <div class="input-custom-title">
+                Name
+            </div>
+            <input class="input-container" #name value={{nam}} [disabled]="!editing">
+        </div></div>
+        <div class="row m-12"><div class="input-custom">
+            <div class="input-custom-title">
+                Occupation
+            </div>
+            <input class="input-container" #occupation value={{occ}} [disabled]="!editing">
+        </div></div>
+        <div class="row m-12"><div class="input-custom">
+            <div class="input-custom-title">
+                Office Title
+            </div>
+            <input class="input-container" #officetitle value={{ot}} [disabled]="!editing">
+        </div></div>
+        <div class="row m-12">
+            <button class="button-medium round m-12" *ngIf="editing" (click)="editing=false">Cancel</button>
+            <button class="button-medium round m-12" *ngIf="editing" (click)="update(password.value, name.value, occupation.value, officetitle.value)">Done</button>
+        </div>
+
+    </div>
+</div>
+

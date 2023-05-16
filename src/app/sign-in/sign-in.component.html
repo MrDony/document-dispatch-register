@@ -1,0 +1,37 @@
+
+<div class="column">
+    <div class="row">
+        <div class="welcome-title m-12">Document Dispatch Register</div>
+    </div>
+    <div class="row">
+        <div class="card m-12">
+            <div class="row m-12"><div class="input-custom">
+                <div class="input-custom-title">
+                    Username
+                </div>
+                <input class="input-container" #username>
+                <div class="warning-red m-5">
+                    {{errors['Username']}}
+                </div>
+            </div></div>
+        
+            <div class="row m-12"><div class="input-custom">
+                <div class="input-custom-title">
+                    Password
+                </div>
+                <input class="input-container" #password type="password">
+                <div class="warning-red m-5">
+                    {{errors['Password']}}
+                </div>
+            </div></div>
+
+            <div class="row m-12">
+                <button class="button-big round" (click)="signIn(username.value,password.value)">
+                    Sign In
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>

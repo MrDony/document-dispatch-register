@@ -1,0 +1,44 @@
+.input-custom{
+    margin: 0px;
+    width: 80%;
+    box-shadow: none;
+}
+.input-container{
+    height: max-content;
+    width: 70%;
+    max-width: 600px;
+}
+.input-container:focus{
+    width: 80%;
+}
+
+.tag{
+    width: max-content;
+    height: max-content;
+    white-space: nowrap;
+    overflow: hidden;
+    margin:12px;
+    cursor: pointer;
+    transition-timing-function: var(--ttf);
+    transition-duration: var(--ttd);
+    min-width: 100px;
+    justify-content: space-between;
+    background-color: var(--orange);
+    text-align: center;
+    align-items: center;
+    
+}
+.tag:hover{
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+
+
+img{
+    width: 50%;
+    max-width: 300px;
+}
+
+.c-w{
+    color: var(--e-white);
+}

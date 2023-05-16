@@ -1,0 +1,66 @@
+<app-top-bar></app-top-bar>
+<div class="column card" style="height: 80%;">
+    <div class="card-title">
+        Completed Documents
+    </div>
+    <div class="card-description">
+        The following table shows the documents that have been completed.
+    </div>
+    <div class="card column card-body bg-ow"  style="height:80%; overflow:scroll;">
+        <div  class="card bg-black" *ngFor="let document of documents; let i =index;">
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">ID</div>
+                <div class="column m-5">{{document.DocumentID}}</div>
+            </div>
+
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Title</div>
+                <div class="column m-5">{{document.Title}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Description</div>
+                <div class="column m-5">{{document.Description}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Date/Time</div>
+                <div class="column m-5">{{document.PostedDate.slice(0, 19).replace('T', ' ')}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Currently At</div>
+                <div class="column m-5">{{document.Path[document.CurrentPosition]}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Path</div>
+                <div class="example-list p-12" style="width: 60%;">
+                    <div class="example-box" style="width: max-content; cursor: default;" *ngFor="let position of document.Path;let i = index;">
+                        <div class="row tag round" style="width: max-content;" [ngStyle]="{'background-color': i<=document.CurrentPosition ? 'var(--e-green)' : 'var(--orange)'}">
+                            {{position}}
+                        </div>
+                        <span *ngIf="i+1<document.Path.length" class="material-icons" style="transform: rotate(270deg); color: var(--orange);"> arrow_downward </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Posted By</div>
+                <div class="column m-5">{{document.PostedUserName}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Status</div>
+                <div class="column m-5">{{document.Status}}</div>
+            </div>
+
+            <div class="row">
+                <div class="column m-5" style="width: 15%;">Comments</div>
+                <div class="column m-5">{{document.Comments}}</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+ 

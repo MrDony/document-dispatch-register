@@ -1,0 +1,17 @@
+.value-holder{
+    width: 300px;
+    padding: 15px;
+}
+.value-holder:hover{
+    background-color: var(--e-russian-vio);
+}
+.value-holder:active{
+    background-color: var(--e-white);
+}
+
+@media (max-width:1090px) {
+    .row{
+        flex-basis: calc(50% - 200px);
+      }
+    
+}

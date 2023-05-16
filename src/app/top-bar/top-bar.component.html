@@ -1,0 +1,39 @@
+<div class="row  top-bar">
+    <div class="top-bar-button-title" (click)="goToHome()">
+       Document Dispatch Register
+    </div>
+    <div class="row">
+        <div class="top-bar-button" (click)="goToHome()">
+            Home
+            <span class='material-icons'>home</span>
+        </div>
+        <div class="top-bar-button documents-button" (click)="show = show?false:true">
+            Documents
+            <span class="material-icons">arrow_drop_down</span>
+            <div class="card bg-ow row documents-list" *ngIf="show">
+                <div class="c-black m-5 button-medium" (click)="goToDispatched()">Dispatched</div>
+                <div class="c-black m-5 button-medium" (click)="goToIncoming()">Incoming</div>
+                <div class="c-black m-5 button-medium" (click)="goToRecieved()">Recieved</div>
+                <div class="c-black m-5 button-medium" (click)="goToCompleted()">Completed</div>
+            </div>
+        </div>
+        <div class="top-bar-button" (click)="goToSearch()">
+            Search Document
+            <span class='material-icons'>search</span>
+        </div>
+        <div class="top-bar-button" (click)="goToMyProfile()">
+            My Profile
+            <span class='material-icons'>account_circle</span>
+        </div>
+        <div class="top-bar-button" (click)="goToNewDispatch()">
+            Dispatch Document
+            <span class="material-icons">note_add</span>
+        </div>
+        <div class="top-bar-button" (click)="logout()">
+            Logout
+            <span class="material-icons">logout</span>
+        </div>
+    </div>
+    
+
+</div>

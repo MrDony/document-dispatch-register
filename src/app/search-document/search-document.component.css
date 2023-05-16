@@ -1,0 +1,19 @@
+.input-custom-title{
+    color: var(--off-white);
+}
+
+.input-custom{
+    box-shadow: none;
+}
+.input-container{
+    max-width: 600px;
+    width: 80%;
+}
+
+.card{
+    height: 80%;
+}
+
+.button-medium{
+    margin-left: 20px;
+}

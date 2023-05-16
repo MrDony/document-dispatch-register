@@ -1,0 +1,14 @@
+<div class="card bg-ow" *ngIf="getDisplaying()">
+    <div class="row" style="justify-content: space-between;">
+        <div class="notification-title">
+            {{getTitle()}}
+        </div>
+        <button class="button-medium" (click)="close()">
+            x
+        </button>
+    </div>
+    
+    <div class="notification-body">
+        {{getMessage()}}
+    </div>
+</div>

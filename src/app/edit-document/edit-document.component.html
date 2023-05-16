@@ -1,0 +1,55 @@
+
+<div mat-dialog-content>
+  
+    <div class="card-body">
+     
+  
+      <div class="input-custom">
+          <div class="input-custom-title c-black m-12">
+              Define Path The Document Will Take
+          </div>
+          
+          <div class="row">
+              <div class="row tag round no-wrap p-12 m-5 bg-or" style="cursor: pointer;" *ngFor="let stop of stops; let i =index" (click)="l_addStop(i)">{{stop}}</div>
+          </div>
+          <div class="row m-12 al-c">
+              <input class="input-container" #position placeholder="Add Custom Reciever" style="margin-right: 20px; width: 80%;">
+              <button class="button-medium round m-12" (click)="l_addToPath(position.value)">add</button>
+          </div>
+          
+          <div class="input-custom-description c-black m-12">
+              The following list shows the admin members that will recieve the document. The route will be decided on the order in this list. (The first stop for the document should be where the document will be initiated from)
+          </div>
+          <div class="row">
+              <div cdkDropList cdkDropListOrientation="horizontal" class="example-list p-12" (cdkDropListDropped)="l_drop($event)">
+                  <div class="example-box" *ngFor="let position of l_path;let i = index;" cdkDrag [cdkDragDisabled]="i<=l_document.CurrentPosition">
+                      <div class="row tag round no-wrap p-12" [ngStyle]="{'background-color': i<=l_document.CurrentPosition ? 'var(--e-green)' : 'var(--orange)'}" >
+                          {{position}} <i class="material-icons" (click)="l_removeFromPath(i)" *ngIf="i>l_document.CurrentPosition">delete</i> 
+                      </div>
+  
+                      <span *ngIf="i+1<l_path.length" class="material-icons" style="transform: rotate(270deg); color: var(--orange);"> arrow_downward </span>
+                  </div>
+                  <div class="input-custom-description m-12" *ngIf="!l_path.length">Choose from the list above or add new.</div>
+              </div>
+          </div>
+          <div class="warning-red m-5">
+              {{errors['Path']}}
+          </div>
+  
+          
+      </div>
+  
+      
+  
+      <div class="input-custom">
+          <div class="input-custom-title c-black m-12" >
+              Comments
+          </div>
+          <input class="input-container" style="width: 80%;" #Comments>
+      </div>
+      
+      
+  
+  </div>
+      <button class="button-big round" (click)="l_done(Comments.value)">Done</button>
+  </div>
